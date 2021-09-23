@@ -1,7 +1,7 @@
-import pool from '../lib/utils/pool.js';
-import setup from '../data/setup.js';
-import request from 'supertest';
-import app from '../lib/app.js';
+const pool = require('../lib/utils/pool');
+const setup = require('../data/setup');
+const request = require('supertest');
+const app = require('../lib/app');
 
 describe('demo routes', () => {
   beforeEach(() => {
@@ -11,4 +11,6 @@ describe('demo routes', () => {
   afterAll(() => {
     pool.end();
   });
+
+  it('/ GET ');
 });
