@@ -1,4 +1,0 @@
-//createFMessage
-//take in 1 input req.body-- CALL API 
-//record who inputted in database
-//.send(data) display Fmessage to user
