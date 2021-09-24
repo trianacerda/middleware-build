@@ -22,18 +22,21 @@ describe('04_middleware-service-layer routes', () => {
   //   pool.end();
   // });
 
-  it('creates a new entry', () => {
+  it.only('creates a new entry', () => {
     return request(app)
       .post('/api/v1/orders')
-      .send({ ???? })
+      .send({ messenger: 'aemilius',
+        funny: true, })
       .then((res) => {
-        expect(res.body).toEqual({ ??? });
-      })
+        expect(res.body).toEqual({  id: 4,
+          messenger: 'aemilius',
+          funny: true,  });
+      });
   });
 
   it('should return all entries', async () => {
-    const order = await Fmessage.insert({ ???? });
-    console.log('order in get all', order);
+    const order = await Fmessage.insert({ messenger: 'aemilius',
+      funny: true, });
     return request(app)
       .get('/api/v1/orders')
       .then((res) => {
@@ -42,7 +45,8 @@ describe('04_middleware-service-layer routes', () => {
   });
 
   it('should return an entry by id', async () => {
-    const order = await Fmessage.insert({ ???? });
+    const order = await Fmessage.insert({ messenger: 'aemilius',
+      funny: true, });
     return request(app)
       .get(`/api/v1/orders/${order.id}`)
       .then((res) => {
@@ -51,17 +55,21 @@ describe('04_middleware-service-layer routes', () => {
   });
 
   it('should update an entry', async () => {
-    const order = await Fmessage.insert({ ???? });
+    const order = await Fmessage.insert({ messenger: 'aemilius',
+      funny: true, });
     return request(app)
       .put(`/api/v1/orders/${order.id}`)
-      .send({ ??? })
+      .send({ funny: false, })
       .then((res) => {
-        expect(res.body).toEqual({ ?? });
+        expect(res.body).toEqual({ id: 4,
+          messenger: 'aemilius',
+          funny: false, });
       });
   });
 
   it('should delete an entry', async () => {
-    const order = await Fmessage.insert({ ???? });
+    const order = await Fmessage.insert({ messenger: 'aemilius',
+      funny: true, });
     return request(app)
       .delete(`/api/v1/orders/${order.id}`)
       .then((res) => {
