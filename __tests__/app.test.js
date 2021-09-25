@@ -19,21 +19,21 @@ describe('04_middleware-service-layer routes', () => {
     return setup(pool);
   });
 
-  // afterAll(() => {
-  //   pool.end();
-  // });
+  afterAll(() => {
+    pool.end();
+  });
 
-  it('creates a new entry', () => {
+  it.only('creates a new entry', () => {
     return request(app)
       .post('/api/v1/orders')
       .send({ messenger: 'aemilius', funny: true })
       .then((res) => {
-        // console.log('!!!!', res);
+        console.log('!!!!', res.body);
         expect(res.body).toEqual({ id: 4, messenger: 'aemilius', funny: true });
       });
   });
 
-  it.only('should return all entries', async () => {
+  it('should return all entries', async () => {
     const order = await Fmessage.insertMessenger({
       messenger: 'aemilius',
       funny: true,
