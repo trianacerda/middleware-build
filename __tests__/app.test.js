@@ -29,7 +29,11 @@ describe('04_middleware-service-layer routes', () => {
       .send({ messenger: 'aemilius', funny: true })
       .then((res) => {
         console.log('!!!!', res.body);
-        expect(res.body).toEqual({ id: 4, messenger: 'aemilius', funny: true });
+        expect(res.body).toEqual({
+          id: '1',
+          messenger: 'aemilius',
+          funny: true,
+        });
       });
   });
 
