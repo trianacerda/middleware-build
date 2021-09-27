@@ -3,6 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const Fmessage = require('../lib/models/FMessage');
+// const twilio = require('twilio');
 
 // /GET--retrieve from third party api
 
@@ -13,6 +14,11 @@ const Fmessage = require('../lib/models/FMessage');
 // /PUT--
 
 // /DELETE--
+jest.mock('twilio', () => () => ({
+  messages: {
+    create: jest.fn(),
+  },
+}));
 
 describe('04_middleware-service-layer routes', () => {
   beforeEach(() => {
