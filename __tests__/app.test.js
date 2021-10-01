@@ -3,17 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const Fmessage = require('../lib/models/FMessage');
-// const twilio = require('twilio');
 
-// /GET--retrieve from third party api
-
-// -----DUMMY DATA-----
-
-// /POST--
-
-// /PUT--
-
-// /DELETE--
 jest.mock('twilio', () => () => ({
   messages: {
     create: jest.fn(),
@@ -29,12 +19,11 @@ describe('04_middleware-service-layer routes', () => {
     pool.end();
   });
 
-  it.only('creates a new entry', () => {
+  it('creates a new entry', () => {
     return request(app)
       .post('/api/v1/orders')
       .send({ messenger: 'aemilius', funny: true })
       .then((res) => {
-        console.log('!!!!', res.body);
         expect(res.body).toEqual({
           id: '1',
           messenger: 'aemilius',
@@ -74,10 +63,10 @@ describe('04_middleware-service-layer routes', () => {
     });
     return request(app)
       .put(`/api/v1/orders/${order.id}`)
-      .send({ funny: false })
+      .send({ messenger: 'aemilius', funny: false })
       .then((res) => {
         expect(res.body).toEqual({
-          id: 4,
+          id: '1',
           messenger: 'aemilius',
           funny: false,
         });

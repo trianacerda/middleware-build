@@ -5,3 +5,4 @@ CREATE TABLE fmessagetable (
   messenger VARCHAR(512),
   funny BOOLEAN
 )
+
